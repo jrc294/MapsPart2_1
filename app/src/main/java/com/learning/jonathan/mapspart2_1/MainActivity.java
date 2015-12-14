@@ -17,6 +17,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -30,6 +32,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     MarkerOptions montlake;
     MarkerOptions kent;
     MarkerOptions showare;
+
+    LatLng RentonLatLng = new LatLng(47.489805, -122.120502);
+    LatLng KirklandLatLng = new LatLng(47.7301986, -122.1768858);
+    LatLng EverettLatLng = new LatLng(47.978748, -122.202001);
+    LatLng LynnwoodLatLng = new LatLng(47.819533, -122.32288);
+    LatLng MontlakeLatLng = new LatLng(47.7973733, -122.3281771);
+    LatLng KentLatLng = new LatLng(47.385938, -122.258212);
+    LatLng ShoareLatLng = new LatLng(47.38702, -122.23985);
+
+    PolylineOptions polyline = new PolylineOptions().geodesic(true)
+            .add(RentonLatLng)
+            .add(KirklandLatLng)
+            .add(EverettLatLng)
+            .add(LynnwoodLatLng)
+            .add(MontlakeLatLng)
+            .add(KentLatLng)
+            .add(ShoareLatLng);
 
     static final CameraPosition SEATTLE = CameraPosition.builder()
             .target(new LatLng(47.6284,-122.2491))
@@ -93,13 +112,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mapReady = true;
         m_map = googleMap;
-        m_map.addMarker(renton);
+        /*m_map.addMarker(renton);
         m_map.addMarker(kirkland);
         m_map.addMarker(everett);
         m_map.addMarker(lynnwood);
         m_map.addMarker(montlake);
         m_map.addMarker(kent);
-        m_map.addMarker(showare);
+        m_map.addMarker(showare);*/
+        m_map.addPolyline(polyline);
         flyTo(SEATTLE);
     }
 
